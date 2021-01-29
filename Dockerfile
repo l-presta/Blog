@@ -23,3 +23,16 @@ RUN echo 'xdebug.remote_connect_back=off' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.remote_handler="dbgp"' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.idekey="VSCODE"' >> /usr/local/etc/php/php.ini
 # RUN echo 'xdebug.remote_log="/var/www/html/xdebug.log"' >> /usr/local/etc/php/php.ini
+
+# installazione copmposer
+RUN wget https://getcomposer.org/download/2.0.8/composer.phar
+RUN mv composer.phar composer
+RUN chmod +x composer
+RUN ./composer 
+RUN mv composer /usr/local/bin/
+RUN apt-get install -y zip
+#INSTALLAZIONE LIBRERIE COMPOSER
+RUN composer require monolog/monolog
+
+#estenzioni lumen
+RUN apt-get install openssl
